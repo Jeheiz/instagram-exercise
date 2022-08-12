@@ -14,6 +14,8 @@ class Person(Base):
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+    surname=Column(String(250), nullable=False)
+    person_id = Column(Integer, ForeignKey('person.id'))
 
 class Address(Base):
     __tablename__ = 'address'
@@ -26,6 +28,34 @@ class Address(Base):
     person_id = Column(Integer, ForeignKey('person.id'))
     person = relationship(Person)
 
+
+class Address(Base):
+    __tablename__ = 'foto'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id_foto = Column(Integer, ForeignKey('person.id'))
+    foto_name = Column(String(250))
+    foto_description = Column(String(250))
+    foto_location = Column(String(250), nullable=False)
+    person_id = Column(Integer, ForeignKey('person.id'))
+    person = relationship(Person)
+   
+
+
+
+
+    class Address(Base):
+      __tablename__ = 'reel'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id_reel = Column(Integer, primary_key=True)
+    location_reel = Column(String(250))
+    description_reel = Column(String(250))
+    person_id = Column(Integer, ForeignKey('person.id'))
+    person = relationship(Person)
+
+
+
     def to_dict(self):
         return {}
 
@@ -36,3 +66,5 @@ try:
 except Exception as e:
     print("There was a problem genering the diagram")
     raise e
+
+    
